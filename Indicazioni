@@ -1,0 +1,8 @@
+Un istogramma pu`o essere usato per identificare pattern in un dataset. Nella
+versione pi`u semplice, un istogramma viene costruito analizzando il valore di
+ciascun elemento del dataset e incrementando il contatore corrispondente. 
+Possiamo dividere i dati di input in sezioni indipendenti, che quindi possono
+essere gestite in parallelo. Ecco uno snippet di codice che utilizza OpenMP per
+generare un istogramma che conta il numero di occorrenze di ogni lettera in una
+stringa di caratteri, raggruppandole in sette bin da quattro lettere (a-d, e-h, i-l,
+m-p, q-t, u-x, y-z)
