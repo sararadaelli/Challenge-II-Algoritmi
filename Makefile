@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -fopenmp
 
 TARGETS = istogramma
 
-SRC = istogramma.c
+SRC = istogramma.cpp
 
 all: $(TARGETS)
 
