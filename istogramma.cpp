@@ -6,7 +6,6 @@
 #define LENGTH 1000000
 
 int main() {
-    double start_time = omp_get_wtime();
     int NUM_THREADS = omp_get_max_threads(); // legge la variabile che verrà impostata dall'utente nel terminale (1,2,8,16,...)
 
     // Generazione stringa di input
@@ -15,6 +14,8 @@ int main() {
     for (int i = 0; i < LENGTH; i++) {
         stringa[i] = 'a' + (rand() % 26);
     }
+    double start_time = omp_get_wtime();
+    
     // Inizializzazione
     int histogram[NUMERO_BINS];
     int local_histograms[NUMERO_BINS][NUM_THREADS];
