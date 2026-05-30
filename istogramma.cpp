@@ -7,7 +7,8 @@
 
 int main() {
     double start_time = omp_get_wtime();
-    int NUM_THREADS = omp_get_max_threads();
+    int NUM_THREADS = 1; 
+    omp_set_num_threads(NUM_THREADS);
 
 
     // Generazione stringa di input
