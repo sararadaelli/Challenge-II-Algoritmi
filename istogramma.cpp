@@ -7,14 +7,14 @@
 
 int main() {
     double start_time = omp_get_wtime();
-   int NUM_THREADS = omp_get_max_threads();
+    int NUM_THREADS = omp_get_max_threads(); // legge la variabile che verrà impostata dall'utente nel terminale (1,2,8,16,...)
 
     // Generazione stringa di input
     char *stringa = (char *)malloc(LENGTH * sizeof(char));
+    srand(42); // seme fisso per riproducibilità
     for (int i = 0; i < LENGTH; i++) {
-        stringa[i] = 'a' + (i % 26); // Ripete le lettere da a a z per tutta la lunghezza stabilita
+        stringa[i] = 'a' + (rand() % 26);
     }
-
     // Inizializzazione
     int histogram[NUMERO_BINS];
     int local_histograms[NUMERO_BINS][NUM_THREADS];
@@ -42,14 +42,15 @@ int main() {
 
     // Somma contributi di ogni thread
     for (int b = 0; b < NUMERO_BINS; b++)
-        for (int t = 0; t < NUM_THREADS; t++) // era total_threads, non dichiarato
+        for (int t = 0; t < NUM_THREADS; t++)
             histogram[b] += local_histograms[b][t];
 
     double run_time = omp_get_wtime() - start_time;
     printf("Tempo: %f secondi con %d thread\n", run_time, NUM_THREADS);
 
-    for (int b = 0; b < NUMERO_BINS; b++)
-        printf("bin[%d]: %d\n", b, histogram[b]);
+    // Stampa istogramma
+    // for (int b = 0; b < NUMERO_BINS; b++)
+        // printf("bin[%d]: %d\n", b, histogram[b]);
 
     free(stringa);
     return 0;
